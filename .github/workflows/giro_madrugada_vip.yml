@@ -1,0 +1,29 @@
+name: Giro da Madrugada VIP
+
+on:
+  schedule:
+    # Executa todos os dias às 07:30 (7:30 AM) UTC.
+    # Isso corresponde a 07:30 de Lisboa no horário de inverno.
+    - cron: '30 7 * * *'
+  workflow_dispatch: # Permite a execução manual
+
+jobs:
+  run_giro:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Giro da Madrugada VIP
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID_VIP: ${{ secrets.CHAT_ID_VIP }}
+        run: python giro_madrugada_vip.py
