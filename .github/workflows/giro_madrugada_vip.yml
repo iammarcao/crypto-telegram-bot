@@ -4,7 +4,7 @@ on:
   schedule:
     # Executa todos os dias às 07:30 (7:30 AM) UTC.
     # Isso corresponde a 07:30 de Lisboa no horário de inverno.
-    - cron: '30 7 * * *'
+    - cron: '15 7 * * *'
   workflow_dispatch: # Permite a execução manual
 
 jobs:
